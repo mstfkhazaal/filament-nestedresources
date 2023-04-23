@@ -56,12 +56,12 @@ class ChildResourceLink extends TextColumn
             $baseParams = $this->table->getLivewire()->urlParameters;
         }
 
-        $param = Str::camel(Str::singular($this->resourceClass::getParent()::getSlug()));
-
+        $param = Str::camel(Str::singular($this->resourceClass::getParent()::getSlug())); // 👈 Here
+        // Which is the same used in "NestedResource::getParentTree()" in the "urlPlaceholder" parameter
 
         return $this->resourceClass::getUrl(
             'index',
-            [...$baseParams, $param->value() => $this->record->getKey()]
+            [...$baseParams, $param => $this->record->getKey()] // 👈 Here
         );
     }
 
