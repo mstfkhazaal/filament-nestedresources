@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "mstfkhazaal/filament-nestedresources",
+    "description": "This is my package filament-nestedresources",
     "keywords": [
-        ":vendor_name",
+        "mstfkhazaal",
         "laravel",
-        ":package_slug"
+        "filament-nestedresources"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/mstfkhazaal/filament-nestedresources",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "mstfkhazaal",
+            "email": "mstfkhazaal@gmail.com",
             "role": "Developer"
         }
     ],
@@ -38,13 +38,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Mstfkhazaal\\FilamentNestedresources\\": "src",
+            "Mstfkhazaal\\FilamentNestedresources\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Mstfkhazaal\\FilamentNestedresources\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -67,10 +67,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Mstfkhazaal\\FilamentNestedresources\\FilamentNestedresourcesServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "FilamentNestedresources": "Mstfkhazaal\\FilamentNestedresources\\Facades\\FilamentNestedresources"
             }
         }
     },
