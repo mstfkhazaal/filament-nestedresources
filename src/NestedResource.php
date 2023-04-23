@@ -15,6 +15,8 @@ abstract class NestedResource extends Resource
 {
     protected static bool $shouldRegisterNavigation = false;
 
+    protected static string $columnBreadcrumb = 'name';
+
     protected static bool $shouldRegisterNavigationWhenInContext = true;
 
     /**
@@ -22,6 +24,10 @@ abstract class NestedResource extends Resource
      */
     abstract public static function getParent(): string;
 
+    public static function getColumnBreadcrumb(): string
+    {
+        return  static::$columnBreadcrumb;
+    }
     public static function getParentAccessor(): string
     {
         return Str::of(static::getParent()::getModel())
