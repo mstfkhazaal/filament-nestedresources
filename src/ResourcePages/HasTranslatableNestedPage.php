@@ -1,6 +1,6 @@
 <?php
 
-namespace SevendaysDigital\FilamentNestedResources\ResourcePages;
+namespace Mstfkhazaal\FilamentNestedresources\ResourcePages;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
