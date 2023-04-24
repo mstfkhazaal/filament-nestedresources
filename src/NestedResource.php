@@ -15,7 +15,7 @@ abstract class NestedResource extends Resource
 {
     protected static bool $shouldRegisterNavigation = false;
 
-    protected static string $columnBreadcrumb = 'name';
+    protected static ?string $columnBreadcrumb = 'name';
 
     protected static bool $shouldRegisterNavigationWhenInContext = true;
 
@@ -24,7 +24,7 @@ abstract class NestedResource extends Resource
      */
     abstract public static function getParent(): string;
 
-    public static function getColumnBreadcrumb(): string
+    public static function getColumnBreadcrumb(): ?string
     {
         return  static::$columnBreadcrumb;
     }
@@ -57,9 +57,9 @@ abstract class NestedResource extends Resource
 
     public static function getRoutes(): Closure
     {
+
         return function () {
             $slug = static::getSlug();
-
             $prefix = '';
             foreach (static::getParentTree(static::getParent()) as $parent) {
                 $prefix .= $parent->urlPart.'/{'.$parent->urlPlaceholder.'}/';
@@ -81,9 +81,7 @@ abstract class NestedResource extends Resource
         if (! is_array($params)) {
             $params = [$params];
         }
-
         $list = static::getParentParametersForUrl(static::getParent(), $params);
-
         $params = [...$params, ...$list];
 
         // Attempt to figure out what url binding should be set for the record.
@@ -97,6 +95,7 @@ abstract class NestedResource extends Resource
 
             $params[Str::singular($resource::getSlug())] = $childParams['record'];
         }
+        //dd(parent::getUrl($name, [...$params, ...$childParams], $isAbsolute));
 
         return parent::getUrl($name, [...$params, ...$childParams], $isAbsolute);
     }

@@ -60,7 +60,18 @@ trait NestedPage
         $nestedCrumbs = [];
         foreach ($resource::getParentTree(static::getResource()::getParent(), $this->urlParameters) as $nested) {
             $nestedCrumbs[$nested->getListUrl()] = $nested->resource::getBreadcrumb();
-            $nestedCrumbs[$nested->getEditUrl()] = $nested->getBreadcrumbTitle();
+            $model= $nested->resource::getModel();
+            $str= $model::find($nested->id);
+            try{
+                $column = $nested->resource::getColumnBreadcrumb();
+                if($str->$column==null){
+                    $nestedCrumbs[$nested->getEditUrl()] = $nested->getBreadcrumbTitle();
+                }else{
+                    $nestedCrumbs[$nested->getEditUrl()] = $str->$column;
+                }
+            }catch (\Exception $e){
+                $nestedCrumbs[$nested->getEditUrl()] = $nested->getBreadcrumbTitle();
+            }
         }
 
         // Add the current list entry.
@@ -105,7 +116,6 @@ trait NestedPage
     protected function configureEditAction(\Filament\Pages\Actions\EditAction|EditAction $action): void
     {
         $resource = static::getResource();
-
         if ($action instanceof EditAction) {
             $action
                 ->authorize(fn (Model $record): bool => $resource::canEdit($record))
@@ -131,6 +141,7 @@ trait NestedPage
 
             $action->form($this->getFormSchema());
         }
+
     }
 
     protected function configureCreateAction(CreateAction $action): void
@@ -151,9 +162,8 @@ trait NestedPage
     protected function configureDeleteAction(DeleteAction|FilamentDeleteAction $action): void
     {
         $resource = static::getResource();
-
         $action
-            ->authorize($resource::canDelete($this->getRecord()))
+            ->authorize(fn (Model $record): bool => $resource::canDelete($record))
             ->record($this->getRecord())
             ->recordTitle($this->getRecordTitle())
             ->successRedirectUrl($resource::getUrl('index', $this->urlParameters));
