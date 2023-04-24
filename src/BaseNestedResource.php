@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 abstract class BaseNestedResource extends Resource
 {
 
-    protected static ?string $columnBreadcrumb = 'name';
+    protected static ?string $columnBreadcrumb ='name';
 
     public static function getColumnBreadcrumb(): ?string
     {

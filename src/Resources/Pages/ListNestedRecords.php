@@ -6,6 +6,7 @@ namespace Mstfkhazaal\FilamentNestedresources\Resources\Pages;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Tables;
+
 class ListNestedRecords extends ListRecords{
 
     protected function configureEditAction(Tables\Actions\EditAction $action): void
