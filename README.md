@@ -17,38 +17,9 @@ You can install the package via composer:
 composer require mstfkhazaal/filament-nestedresources
 ```
 
-You can publish and run the migrations with:
+## Demo
 
-```bash
-php artisan vendor:publish --tag="filament-nestedresources-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="filament-nestedresources-config"
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="filament-nestedresources-views"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-## Usage
-
-```php
-$filament-nestedresources = new Mstfkhazaal\FilamentNestedresources();
-echo $filament-nestedresources->echoPhrase('Hello, Mstfkhazaal!');
-```
+https://github.com/mstfkhazaal/nscourse
 
 ## Testing
 
