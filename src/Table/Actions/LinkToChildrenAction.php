@@ -1,6 +1,6 @@
 <?php
 
-namespace Mstfkhazaal\FilamentNestedresources;
+namespace Mstfkhazaal\FilamentNestedresources\Table\Actions;
 
 use Filament\Tables\Actions\Action;
 use Illuminate\Support\Str;
