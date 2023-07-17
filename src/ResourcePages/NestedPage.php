@@ -64,10 +64,18 @@ trait NestedPage
             $str= $model::find($nested->id);
             try{
                 $column = $nested->resource::getColumnBreadcrumb();
-                if($str->$column==null){
+                $relationshipSegments = explode('.', $column);
+                $relation = $str;
+
+                foreach ($relationshipSegments as $segment) {
+                    $relation = $relation->{$segment} ?? null;
+                }
+
+                $result = $relation;
+                if($result==null){
                     $nestedCrumbs[$nested->getEditUrl()] = $nested->getBreadcrumbTitle();
                 }else{
-                    $nestedCrumbs[$nested->getEditUrl()] = $str->$column;
+                    $nestedCrumbs[$nested->getEditUrl()] =$result;
                 }
             }catch (\Exception $e){
                 $nestedCrumbs[$nested->getEditUrl()] = $nested->getBreadcrumbTitle();
